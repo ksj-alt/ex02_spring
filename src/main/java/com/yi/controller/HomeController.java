@@ -40,4 +40,14 @@ public class HomeController {
 	public String replyTest() {
 		return "replyTest";
 	}
+	
+	@RequestMapping(value="temp1", method=RequestMethod.GET)
+	public String temp1() {
+		return "handlebars1";
+	}
+	
+	@RequestMapping(value="temp2", method=RequestMethod.GET)
+	public String temp2() {
+		return "handlebars2";
+	}
 }

@@ -75,8 +75,6 @@ public class ReplyController {
 	@RequestMapping(value="{rno}", method=RequestMethod.PUT)
 	public ResponseEntity<String> update(@PathVariable("rno") int rno, @RequestBody ReplyVO vo) {
 		ResponseEntity<String> entity = null;
-		System.out.println(vo);
-		System.out.println(rno);
 		
 		try {
 			vo.setRno(rno);	//주소줄에 넘어온 rno 번호를 넣음
@@ -93,7 +91,6 @@ public class ReplyController {
 	@RequestMapping(value="{rno}", method=RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@PathVariable("rno") int rno){
 		ResponseEntity<String> entity = null;
-		System.out.println(rno);
 		
 		try {
 			service.delete(rno);
