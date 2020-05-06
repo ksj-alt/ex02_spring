@@ -50,4 +50,9 @@ public class HomeController {
 	public String temp2() {
 		return "handlebars2";
 	}
+	
+	@RequestMapping(value="temp3", method=RequestMethod.GET)
+	public String temp3() {
+		return "handlebars3";
+	}
 }

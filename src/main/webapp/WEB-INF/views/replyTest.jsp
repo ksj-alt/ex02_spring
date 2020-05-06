@@ -47,6 +47,22 @@
 	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+<script id="template" type="text/x-handlebars-template">
+	{{#each list}}
+	<li>
+	<div class="item">
+		<span class="rno">{{rno}}</span> : <span class="writer">{{replyer}}</span>
+		<span class="text">{{replytext}}</span>
+		<div class="btnWrap">
+			<button class="btnMod" data-rno="{{rno}}" data-text="{{replytext}}">수정</button>
+			<button class="btnDel" data-rno="{{rno}}">삭제</button>
+		</div>
+	</div>
+	</li>
+	{{/each}}
+</script>
 <script>
 	var currentPage = 1;
 	function getPageList(page){
@@ -59,8 +75,15 @@
 			success:function(res){
 				console.log(res);
 				
+				//아래보다 더 간단
 				$("#list").empty();
-				$(res.list).each(function(i, obj){
+				var source = $("#template").html();
+				var func = Handlebars.compile(source);
+				$("#list").append(func(res));
+				
+				
+				
+				/* $(res.list).each(function(i, obj){
 					var rno = obj.rno;
 					var replyer = obj.replyer;
 					var replytext = obj.replytext;
@@ -80,7 +103,7 @@
 					$li.append($divItem);
 					
 					$("#list").append($li);
-				})
+				}) */
 				
 				$("#pagination").empty();
 				for(var i= res.pageMaker.startPage; i<=res.pageMaker.endPage; i++){
@@ -213,10 +236,10 @@
 			<!-- <li>
 				<div class="item">
 					<span class="rno">22</span> : <span class="writer">작성자</span>
-					<span>댓글 내용</span>
+					<span class="text">댓글 내용</span>
 					<div class="btnWrap">
-						<button class="btnMod">수정</button>
-						<button class="btnDel">삭제</button>
+						<button class="btnMod" data-rno="22" data-text="text">수정</button>
+						<button class="btnDel" data-rno="22">삭제</button>
 					</div>
 				</div>
 			</li> -->
